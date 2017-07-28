@@ -6,7 +6,7 @@ default:
 .PHONY: install
 install:
 	mkdir -p $(path_bin)
-	install -g users -m 0650 src/show-battery-status.sh "$(path_bin)"
+	install -m 0651 src/show-battery-status.sh "$(path_bin)"
 	ln -s /usr/local/bin/show-battery-status.sh "$(path_bin)"/show-battery-status
 
 .PHONY: remove
