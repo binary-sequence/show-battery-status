@@ -2,7 +2,7 @@
 
 # This file is part of 'show-battery-status'.
 #
-# Copyright 2012 Sergio Lindo <sergiolindo.empresa@gmail.com>
+# Copyright 2012-2020 Sergio Lindo <sergiolindo.empresa@gmail.com>
 #
 # 'show-battery-status' is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as published by

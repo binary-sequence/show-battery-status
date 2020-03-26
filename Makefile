@@ -1,6 +1,6 @@
 # This file is part of 'show-battery-status'.
 #
-# Copyright 2012 Sergio Lindo <sergiolindo.empresa@gmail.com>
+# Copyright 2012-2020 Sergio Lindo <sergiolindo.empresa@gmail.com>
 #
 # 'show-battery-status' is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as published by
@@ -14,18 +14,30 @@
 # You should have received a copy of the GNU General Public License along with
 # 'show-battery-status'. If not, see <http://www.gnu.org/licenses/>.
 
-path_bin = $(DESTDIR)/usr/local/bin/
+# This file is intended for installation in UNIX based systems
+SHELL = /bin/sh
+INSTALL = install
+INSTALL_PROGRAM = $(INSTALL) -m 0555
+INSTALL_DIR = $(INSTALL) -d -m 0775
 
-default:
-	@echo "use 'make install' to install"
+software_name = show-battery-status
+prefix = /usr/local
+bindir = $(prefix)/bin
+srcdir = $(prefix)/src
+software_srcdir = $(srcdir)/$(software_name)
+software_bindir = $(DESTDIR)$(bindir)
+
+.PHONY: all
+all:
+	@echo "This is the default target and does nothing. Use 'make install' to install"
 
 .PHONY: install
 install:
-	mkdir -p $(path_bin)
-	install -m 0655 src/show-battery-status.sh "$(path_bin)"
-	ln -s /usr/local/bin/show-battery-status.sh "$(path_bin)"/show-battery-status
+	$(INSTALL_DIR) $(software_bindir)
+	$(INSTALL_PROGRAM) $(software_srcdir)/src/$(software_name).sh $(software_bindir)/$(software_name).sh
+	@echo "$(software_name) is installed :)"
 
-.PHONY: remove
-remove:
-	rm "$(path_bin)"/show-battery-status
-	rm "$(path_bin)"/show-battery-status.sh
+.PHONY: uninstall
+uninstall:
+	rm $(software_bindir)/show-battery-status.sh
+	@echo "$(software_name) is uninstalled :)"
